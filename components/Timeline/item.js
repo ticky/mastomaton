@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 const styles = StyleSheet.create({
   item: {
@@ -11,22 +12,23 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class TimelineItem extends React.PureComponent {
+class TimelineItem extends React.PureComponent {
   handlePress = () => {
     console.log("Going!");
-    this.props.navigation.navigate('Details')
+    this.props.navigation.navigate('Details', { item: this.props.item });
   }
 
   render() {
     return (
-      <View
-        onPress={this.handlePress}
-        style={styles.item}
-      >
-        <Text style={styles.itemText}>
-          {this.props.item.value}
-        </Text>
-      </View>
+      <TouchableHighlight onPress={this.handlePress}>
+        <View style={styles.item}>
+          <Text style={styles.itemText}>
+            {this.props.item.value}
+          </Text>
+        </View>
+      </TouchableHighlight>
     );
   }
 }
+
+export default withNavigation(TimelineItem);

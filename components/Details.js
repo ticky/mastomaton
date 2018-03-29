@@ -9,7 +9,10 @@ export default class Details extends React.PureComponent {
         style={styles.item}
       >
         <Text style={styles.itemText}>
-          {this.props.item.value}
+          {this.props.navigation.state.params.item.value}
+        </Text>
+        <Text>
+          {this.props.navigation.state.params.item.key}
         </Text>
       </View>
     );
@@ -19,7 +22,6 @@ export default class Details extends React.PureComponent {
 const styles = StyleSheet.create({
   item: {
     padding: 10,
-    height: 44,
     backgroundColor: '#fff'
   },
   itemText: {
