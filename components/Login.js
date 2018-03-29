@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { StyleSheet, Button, Text, TextInput, KeyboardAvoidingView } from 'react-native';
-import { AuthSession } from 'expo';
+import { authorize } from 'react-native-app-auth';
 
 const DEFAULT_INSTANCE = 'awoo.space';
 
@@ -37,16 +37,14 @@ export default class Login extends React.PureComponent {
   };
 
   handleInstanceConfirm = async () => {
-    let redirectUrl = AuthSession.getRedirectUrl();
-
-    let result = await AuthSession.startAsync({
-      authUrl:
-        `https://awoo.space/oauth?response_type=token` +
-        `&client_id=sorry-this-is-a-test` +
-        `&redirect_uri=${encodeURIComponent(redirectUrl)}`,
-    });
-
-    this.setState({ result });
+    const config = {
+      issuer: `https://${this.state.instance || DEFAULT_INSTANCE}`,
+      clientId: '<YOUR_CLIENT_ID>',
+      redirectUrl: '<YOUR_REDIRECT_URL>',
+      scopes: ['<YOUR_SCOPES_ARRAY>'],
+    };
+    
+    const result = await authorize(config);
   };
 
   render() {
