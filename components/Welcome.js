@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   introText: {
     textAlign: 'center',
     fontSize: 18,
+    margin: 5
   },
 });
 

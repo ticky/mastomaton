@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
 
 export default class AppLoadingScreen extends React.PureComponent {
   componentDidMount() {
+    // This is the bit that determines logged-in state, oh dear
     setTimeout(() => {
       this.props.navigation.navigate('Unauthenticated');
     }, 250);
